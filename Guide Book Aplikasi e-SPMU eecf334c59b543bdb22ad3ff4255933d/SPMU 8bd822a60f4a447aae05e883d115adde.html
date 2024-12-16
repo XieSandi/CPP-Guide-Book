@@ -1,0 +1,689 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>SPMU</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="8bd822a6-0f4a-447a-ae05-e883d115adde" class="page sans"><header><h1 class="page-title">SPMU</h1><p class="page-description"></p></header><div class="page-body"><div id="4ff414e1-1c48-4748-80dd-a64f82d4fd43" class="column-list"><div id="122e9aac-3c32-4312-8a2c-0a5a4faec670" style="width:33.333333333333336%" class="column"><figure id="097738a8-fc1e-4809-a25d-1f12838293e6" class="image"><a href="SPMU%208bd822a60f4a447aae05e883d115adde/Screenshot_(56).png"><img style="width:1833px" src="SPMU%208bd822a60f4a447aae05e883d115adde/Screenshot_(56).png"/></a></figure></div><div id="8e061a95-269e-4eaf-ba5e-f56211ff08b5" style="width:33.333333333333336%" class="column"><figure id="a9c4960e-cc01-4feb-92ec-37bae6326f89" class="image"><a href="SPMU%208bd822a60f4a447aae05e883d115adde/Screenshot_(57).png"><img style="width:644.3333740234375px" src="SPMU%208bd822a60f4a447aae05e883d115adde/Screenshot_(57).png"/></a></figure></div><div id="5394ee7a-e775-48e5-8d37-5da7028c48f7" style="width:33.33333333333333%" class="column"><figure id="ee8ed688-ee82-465e-bbaa-6f1b95f4f20c" class="image"><a href="SPMU%208bd822a60f4a447aae05e883d115adde/Screenshot_(58).png"><img style="width:644.3333740234375px" src="SPMU%208bd822a60f4a447aae05e883d115adde/Screenshot_(58).png"/></a></figure></div></div><p id="070e6d33-a704-4ba1-80c8-8333855b0e58" class=""><strong>SPMU</strong> merupakan formulir kedua yang wajib Anda lengkapi jika saat mengisi formulir SPPKI, <strong>Anda</strong> <strong>menyatakan memiliki usaha terkait CPP Group.</strong></p><p id="dbf946d2-2640-4d8f-ad85-0fd34b56467f" class="">Pada formulir SPMU, Anda dapat mengisi data sesuai dengan kondisi yang dipilih saat pengisian formulir SPPKI.</p><ol type="1" id="ed846465-2f47-47e2-8e15-aceeaf0f99cb" class="numbered-list" start="1"><li>Apabila Anda memilih kondisi <strong>&quot;Memiliki Usaha terkait CPP Group&quot;</strong> saat pengisian formulir SPPKI, Maka berikut adalah panduan dalam pengisian formulir SPMU:<p id="ae7b6c33-0319-441d-9621-f2265ef1e3f6" class=""><strong>A. Apakah Anda Bertindak Sebagai Pengelola Usaha Anda Sendiri (Ya)</strong></p><ul id="2f7db8d9-5b84-4cb9-b3d1-40b8ddb32b47" class="bulleted-list"><li style="list-style-type:disc">Pilih / Tick Mark &quot;Ya&quot; pada pertanyaan &quot;Apakah Anda Bertindak Sebagai Pengelola Usaha Sendiri?&quot;. Informasi nama dan email Anda akan secara otomatis terisi dari data profil Anda.</li></ul><ul id="b5d8591a-6e92-4a2f-8206-46a27e9b6cd0" class="bulleted-list"><li style="list-style-type:disc">Isi semua data yang diperlukan pada kotak putih yang tersedia. Pastikan semua informasi yang Anda berikan akurat dan lengkap.</li></ul><ul id="ab4515a2-de2b-4892-aedf-250aae53958d" class="bulleted-list"><li style="list-style-type:disc">Lakukan <strong>e-sign</strong> dengan memberikan tanda tangan Anda di kotak yang sudah disediakan (sesuai e-KTP).</li></ul><ul id="fbd8d9eb-b10b-447d-9785-753d7eac125b" class="bulleted-list"><li style="list-style-type:disc">Setelah memberikan tanda tangan, <strong>Pilih/ tick mark &quot;Terapkan Tanda Tangan&quot;.</strong> Apabila ingin melakukan koreksi tanda tangan silahkan klik &quot;Ulangi&quot;.</li></ul><ul id="a9e7fa3b-e73b-4fa0-a1fa-ae28123b9617" class="bulleted-list"><li style="list-style-type:disc">Setelah yakin dengan isi formulir dan tanda tangan Anda, klik &quot;Preview&quot;.</li></ul><ul id="10c55fbb-4017-4dbb-8a55-4e083b0a1a44" class="bulleted-list"><li style="list-style-type:disc">Anda akan diarahkan untuk verifikasi final sebelum disubmit ke sistem.</li></ul><p id="9db192a1-054a-4037-9cb3-377e0d67a0ef" class=""><strong>B. Apakah Anda Bertindak Sebagai Pengelola Usaha Anda Sendiri (Tidak)</strong></p><ul id="fbe96593-02cd-4b80-a1a9-650c37ff659d" class="bulleted-list"><li style="list-style-type:disc">Pillih / Tick Mark &quot;Tidak&quot;, Anda akan diminta untuk mengisi kolom nama dan email pengelola yang valid dan benar. Hal ini dilakukan jika pengelola usaha berbeda dengan karyawan yang bersangkutan.</li></ul><ul id="df402033-8f22-4b72-9a71-d494aa2d07ea" class="bulleted-list"><li style="list-style-type:disc">Apabila inputan hubungan dengan karyawan belum dipilih, maka akan ada pop up warning yang berisikan &quot;Mohon pilih hubungan pengelola vendor (1) dengan karyawan&quot;.</li></ul><ul id="59e44209-b11c-400d-96a2-ec42249743d8" class="bulleted-list"><li style="list-style-type:disc">Isi semua data yang diperlukan pada kotak putih yang tersedia. Pastikan semua informasi yang Anda berikan akurat dan lengkap.</li></ul><ul id="ffe6ca16-1bb9-46a1-ad1c-ec96623dbf65" class="bulleted-list"><li style="list-style-type:disc">Lakukan <strong>e-sign</strong> dengan memberikan tanda tangan Anda di kotak yang sudah disediakan (sesuai e-KTP).</li></ul><ul id="df00258f-1ce4-4456-8de4-6f5e2d4ce01c" class="bulleted-list"><li style="list-style-type:disc">Setelah memberikan tanda tangan, <strong>Pilih/ tick mark &quot;Terapkan Tanda Tangan&quot;.</strong> Apabila ingin melakukan koreksi tanda tangan silahkan klik &quot;Ulangi&quot;.</li></ul><ul id="95698253-a4d0-41ce-b757-ebe16ada5382" class="bulleted-list"><li style="list-style-type:disc">Setelah yakin dengan isi formulir dan tanda tangan Anda, klik &quot;Preview&quot;.</li></ul><ul id="fafffcc9-4875-4662-b374-6d81c7b5516d" class="bulleted-list"><li style="list-style-type:disc">Anda akan diarahkan untuk verifikasi final sebelum disubmit ke sistem.<p id="bcf43b36-a4b3-4692-b447-f7962e372384" class=""><strong>Notes:</strong> Daftar hubungan dengan karyawan yang muncul bagi pengguna yang memiliki kondisi &quot;Memiliki Usaha Terkait CPP Group&quot; yaitu suami/Istri, anak, saudara kandung, orang tua, mertua, teman, kolega, kerabat.</p><p id="934ad587-f5a1-43b5-8d91-4ae9e03f730e" class="">
+</p></li></ul></li></ol><ol type="1" id="90ee46bb-262b-42a0-9293-052db59e6bbb" class="numbered-list" start="2"><li>Apabila Anda memilih kondisi &quot;<strong>Tidak Memiliki Usaha terkait CPP Group, Namun anggota keluarga Anda memiliki usaha terkait CPP Group.</strong>&quot; saat pengisian formulir SPPKI. Maka berikut adalah panduan dalam pengisian formulir SPMU:<p id="ddb1105f-c345-4b5d-9289-87f21c847148" class=""><strong>A. Apakah Anggota Keluarga Anda Bertindak Sebagai Pengelola Usaha Sendiri (Ya)</strong></p><ul id="6f640498-264c-4054-964b-ad5f4a3d437b" class="bulleted-list"><li style="list-style-type:disc">Isi box dengan memilih salah satu pada pertanyaan &quot;Hubungan dengan Karyawan?&quot;</li></ul><ul id="88b45c11-8f38-4bd5-9226-14cb146664dc" class="bulleted-list"><li style="list-style-type:disc">Pilih / Tick Mark &quot;Ya&quot; pada pertanyaan &quot;Apakah Anda Bertindak Sebagai Pengelola Usaha Sendiri?&quot;. Informasi nama dan email Anda akan secara otomatis terisi dari data profil Anda.</li></ul><ul id="2aaad713-2bfd-4c96-9594-5fbb831bd013" class="bulleted-list"><li style="list-style-type:disc">Isi semua data yang diperlukan pada kotak putih yang tersedia. Pastikan semua informasi yang Anda berikan akurat dan lengkap.</li></ul><ul id="b1010633-e848-4c0f-8388-ee3d25c4a940" class="bulleted-list"><li style="list-style-type:disc">Lakukan <strong>e-sign</strong> dengan memberikan tanda tangan Anda di kotak yang sudah disediakan (sesuai e-KTP).</li></ul><ul id="30592c70-bba4-43bc-a8f7-476960494896" class="bulleted-list"><li style="list-style-type:disc">Setelah memberikan tanda tangan, <strong>Pilih/ tick mark &quot;Terapkan Tanda Tangan&quot;.</strong> Apabila ingin melakukan koreksi tanda tangan silahkan klik &quot;Ulangi&quot;.</li></ul><ul id="25b01f97-9d34-4fba-8d25-786bfab693b2" class="bulleted-list"><li style="list-style-type:disc">Setelah yakin dengan isi formulir dan tanda tangan Anda, klik &quot;Preview&quot;.</li></ul><ul id="cdc2206f-8381-4c63-940c-504729b6e150" class="bulleted-list"><li style="list-style-type:disc">Anda akan diarahkan untuk verifikasi final sebelum disubmit ke sistem.</li></ul><p id="2198aa36-b09c-4ed1-9761-8a69e704c8a6" class=""><strong>B. Apakah Anggota Keluarga Anda Bertindak Sebagai Pengelola Usaha Sendiri (Tidak)</strong></p><ul id="be5446b5-d45e-48fb-9144-5b178e504958" class="bulleted-list"><li style="list-style-type:disc">Isi box dengan memilih salah satu pada pertanyaan &quot;Hubungan dengan Karyawan?&quot;</li></ul><ul id="bc11066a-3f07-490f-b352-7b510e11b2f1" class="bulleted-list"><li style="list-style-type:disc">Pilih / Tick Mark &quot;Ya&quot; pada pertanyaan &quot;Apakah Anda Bertindak Sebagai Pengelola Usaha Sendiri?&quot;. Informasi nama dan email Anda akan secara otomatis terisi dari data profil Anda.</li></ul><ul id="dba85de8-74a3-4aae-b000-5828060cbb2a" class="bulleted-list"><li style="list-style-type:disc">Isi semua data yang diperlukan pada kotak putih yang tersedia. Pastikan semua informasi yang Anda berikan akurat dan lengkap.</li></ul><ul id="159461d0-6ace-480d-8e3b-2a4b1d9173c7" class="bulleted-list"><li style="list-style-type:disc">Lakukan <strong>e-sign</strong> dengan memberikan tanda tangan Anda di kotak yang sudah disediakan (sesuai e-KTP).</li></ul><ul id="b6fb4db2-859d-4242-bdeb-6ba910c8c542" class="bulleted-list"><li style="list-style-type:disc">Setelah memberikan tanda tangan, <strong>Pilih/ tick mark &quot;Terapkan Tanda Tangan&quot;.</strong> Apabila ingin melakukan koreksi tanda tangan silahkan klik &quot;Ulangi&quot;.</li></ul><ul id="be188f4b-7c0f-4b03-a8e1-991374a1a0e7" class="bulleted-list"><li style="list-style-type:disc">Setelah yakin dengan isi formulir dan tanda tangan Anda, klik &quot;Preview&quot;.</li></ul><ul id="12333e83-fd2e-4962-95a7-84d4d16a2cd8" class="bulleted-list"><li style="list-style-type:disc">Anda akan diarahkan untuk verifikasi final sebelum disubmit ke sistem.<p id="bbc37968-8ffe-43ce-9f2e-2fa834f5c74f" class=""><strong>Notes:</strong> Daftar hubungan dengan karyawan yang muncul bagi pengguna yang memiliki kondisi &quot;Memiliki Usaha Terkait CPP Group&quot; yaitu suami/Istri, anak, saudara kandung, orang tua, mertua.</p></li></ul><p id="b6e9b61a-2194-4ccf-8203-988cf0e6ea17" class="">
+</p></li></ol><ol type="1" id="ac816694-8a23-4a03-bc9b-2e1a0384ccb4" class="numbered-list" start="3"><li>Apabila Anda memilih kondisi <strong>&quot;Tidak Memiliki Usaha terkait CPP Group namun Anda ataupun anggota keluarga Anda (Anak/ Saudara/ Istri/ Suami/ Mertua) secara langsung maupun tidak langsung merupakan beneficial owner/pemilik manfaat dari perusahaan yang terkait dengan CPP Group*&quot;</strong> (Misalnya melalui Teman/Kerabat/Kolega). Maka berikut adalah panduan dalam pengisian formulir SPMU:<p id="8ca0504d-a63c-4d21-bb45-a4462d79bb35" class=""><strong>A. Apakah Teman/Kerabat/Kolega Anda Bertindak Sebagai Pengelola Usaha Sendiri (Ya)</strong></p><ul id="822f42b1-b06b-46e9-918c-02cb1d62ff7e" class="bulleted-list"><li style="list-style-type:disc">Isi box dengan memilih salah satu pada pertanyaan &quot;Hubungan dengan Karyawan?&quot;</li></ul><ul id="3da97bbd-d8a2-475d-a423-055a98e79675" class="bulleted-list"><li style="list-style-type:disc">Pilih / Tick Mark &quot;Ya&quot; pada pertanyaan &quot;Apakah Anda Bertindak Sebagai Pengelola Usaha Sendiri?&quot;. Informasi nama dan email Anda akan secara otomatis terisi dari data profil Anda.</li></ul><ul id="f3b789b3-ee98-46e4-8520-e9621fca8b22" class="bulleted-list"><li style="list-style-type:disc">Isi semua data yang diperlukan pada kotak putih yang tersedia. Pastikan semua informasi yang Anda berikan akurat dan lengkap.</li></ul><ul id="0ce1d258-eaa8-4f11-89a3-4e7383661562" class="bulleted-list"><li style="list-style-type:disc">Lakukan <strong>e-sign</strong> dengan memberikan tanda tangan Anda di kotak yang sudah disediakan (sesuai e-KTP).</li></ul><ul id="b01b3d24-f592-429f-b752-06a033176164" class="bulleted-list"><li style="list-style-type:disc">Setelah memberikan tanda tangan, <strong>Pilih/ tick mark &quot;Terapkan Tanda Tangan&quot;.</strong> Apabila ingin melakukan koreksi tanda tangan silahkan klik &quot;Ulangi&quot;.</li></ul><ul id="3956a5d3-a449-4fed-b172-8172440cd80b" class="bulleted-list"><li style="list-style-type:disc">Setelah yakin dengan isi formulir dan tanda tangan Anda, klik &quot;Preview&quot;.</li></ul><ul id="6fe49d89-c48d-4af9-ad14-d7fbb54a4f53" class="bulleted-list"><li style="list-style-type:disc">Anda akan diarahkan untuk verifikasi final sebelum disubmit ke sistem.</li></ul><p id="7dc9bae7-8c3a-4131-844f-2488edfea020" class=""><strong>B. Apakah Teman/Kerabat/Kolega Anda Bertindak Sebagai Pengelola Usaha Sendiri (Tidak)</strong></p><ul id="7401e34e-296b-40ab-92df-0fd69eebf01b" class="bulleted-list"><li style="list-style-type:disc">Isi box dengan memilih salah satu pada pertanyaan &quot;Hubungan dengan Karyawan?&quot;</li></ul><ul id="3fe4d7f8-2480-430c-9ed8-402cab733002" class="bulleted-list"><li style="list-style-type:disc">Pilih / Tick Mark &quot;Ya&quot; pada pertanyaan &quot;Apakah Anda Bertindak Sebagai Pengelola Usaha Sendiri?&quot;. Informasi nama dan email Anda akan secara otomatis terisi dari data profil Anda.</li></ul><ul id="2ad2d58f-c998-45e4-972d-90b7d6669089" class="bulleted-list"><li style="list-style-type:disc">Isi semua data yang diperlukan pada kotak putih yang tersedia. Pastikan semua informasi yang Anda berikan akurat dan lengkap.</li></ul><ul id="88befb30-fdcd-4783-9544-bf66f956e560" class="bulleted-list"><li style="list-style-type:disc">Lakukan <strong>e-sign</strong> dengan memberikan tanda tangan Anda di kotak yang sudah disediakan (sesuai e-KTP).</li></ul><ul id="1de1a45f-e337-475f-8c9f-4c43736cd731" class="bulleted-list"><li style="list-style-type:disc">Setelah memberikan tanda tangan, <strong>Pilih/ tick mark &quot;Terapkan Tanda Tangan&quot;.</strong> Apabila ingin melakukan koreksi tanda tangan silahkan klik &quot;Ulangi&quot;.</li></ul><ul id="29536f36-8c0a-432e-bff7-3b504745edf0" class="bulleted-list"><li style="list-style-type:disc">Setelah yakin dengan isi formulir dan tanda tangan Anda, klik &quot;Preview&quot;.</li></ul><ul id="1e056a41-482d-4298-a5ed-f0d2708d9642" class="bulleted-list"><li style="list-style-type:disc">Anda akan diarahkan untuk verifikasi final sebelum disubmit ke sistem.<p id="58063527-855b-49fe-8c99-41054f109ed0" class=""><strong>Notes:</strong> Daftar hubungan dengan karyawan yang muncul bagi pengguna yang memiliki kondisi &quot;Memiliki Usaha Terkait CPP Group&quot; yaitu kolega, kerabat, teman.</p><p id="bdd28cd0-1fcd-4d8f-8300-e01c070e3f7a" class="">
+</p></li></ul></li></ol><p id="eb3c936a-3ba3-411b-b752-84b986eb3670" class="">
+</p><div id="af791a67-1c95-4e8f-a058-85c7910d5fa4" class="column-list"><div id="d7ff2c79-6b6e-4699-94df-8a5930a5bc46" style="width:33.33333333333333%" class="column"><figure id="0a08e8c8-2c95-4952-8e46-3bbadc15c22e" class="link-to-page"><a href="SPMU%208bd822a60f4a447aae05e883d115adde/Poin%20A%200a08e8c82c9549528e463bbadc15c22e.html">Poin A</a></figure></div><div id="0c5d0bf2-2cd9-4833-99ea-2a3cda681fec" style="width:33.33333333333333%" class="column"><figure id="3b414a75-5019-4d1f-85ee-df6da69edfef" class="link-to-page"><a href="SPMU%208bd822a60f4a447aae05e883d115adde/Poin%20B%203b414a7550194d1f85eedf6da69edfef.html">Poin B</a></figure></div><div id="6a5ce4fc-f2f8-4673-be2b-7eb1d6d51006" style="width:33.33333333333333%" class="column"><figure id="2fce4aba-e89f-4180-8361-64b2f92cca63" class="link-to-page"><a href="SPMU%208bd822a60f4a447aae05e883d115adde/Poin%20C%202fce4abae89f4180836164b2f92cca63.html">Poin C</a></figure><figure id="c52742bc-be47-4ebb-8c13-4322354ac38b" class="link-to-page"><a href="SPMU%208bd822a60f4a447aae05e883d115adde/Poin%20D%20c52742bcbe474ebb8c134322354ac38b.html">Poin D</a></figure></div></div><p id="5002dbf5-e1ef-4efc-9407-ced1fb618bd0" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
